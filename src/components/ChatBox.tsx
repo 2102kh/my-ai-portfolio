@@ -65,17 +65,26 @@ export default function ChatBox() {
         </button>
       </form>
 
-      <div className="mt-6 space-y-2">
+      <div className="mt-6 space-y-2 overflow-y-auto max-h-60">
   {messages.map((msg, index) => (
     <div
       key={index}
-      className={`p-3 rounded-lg ${
-        msg.sender === 'user' ? 'bg-blue-100 text-right' : 'bg-gray-100 text-left'
+      className={`flex ${
+        msg.sender === 'user' ? 'justify-end' : 'justify-start'
       }`}
     >
-      <p className="text-sm">
-        <strong>{msg.sender === 'user' ? 'Du' : 'Dockan'}:</strong> {msg.text}
-      </p>
+      <div
+        className={`max-w-[80%] p-3 rounded-lg text-sm ${
+          msg.sender === 'user'
+            ? 'bg-blue-500 text-white rounded-br-none'
+            : 'bg-gray-100 text-gray-800 rounded-bl-none flex items-start gap-2'
+        }`}
+      >
+        {msg.sender === 'bot' && (
+          <span className="text-xl">🤖</span>
+        )}
+        <p>{msg.text}</p>
+      </div>
     </div>
   ))}
 </div>
