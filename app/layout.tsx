@@ -16,14 +16,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} bg-gray-50 text-gray-900`}>
         <header className="p-4 bg-white shadow-md flex justify-between">
           <h1 className="text-xl font-bold">👩‍💻 Mitt Portfolio</h1>
-          <nav className="space-x-4">
+          <nav className="space-x-8">
             <Link href="/">Start</Link>
             <Link href="/projects">Projekt</Link>
             <Link href="/chat">Intervju</Link>
             <Link href="/about">Om mig</Link>
           </nav>
         </header>
-        <main className="p-4">{children}</main>
+        <main>{children}</main>
         <footer className="p-4 text-center text-sm text-gray-500">© {new Date().getFullYear()} Mitt AI-Portfolio</footer>
       </body>
     </html>

@@ -86,7 +86,8 @@ const speak = async (text: string) => {
   }
 
   return (
-    <div className='p-4 bg-white rounded-lg shadow-md w-full max-w-md mx-auto'>
+    <div className='p-6 shadow-md w-full max-w-md mx-auto  bg-[var(--secondary)] text-[var(--primary)] rounded-lg shadow-lg">
+'>
       <h2 className='text-lg font-bold mb-4'>Chat with AI</h2>
       <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
         <textarea
@@ -98,7 +99,7 @@ const speak = async (text: string) => {
         />
         <button
           type='submit'
-          className={`bg-blue-500 text-white py-2 px-4 rounded-lg ${
+          className={`bg-[var(--primary)] text-white py-2 px-4 rounded-lg ${
             loading ? 'opacity-50 cursor-not-allowed' : ''
           }`}
           disabled={loading}

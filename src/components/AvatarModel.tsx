@@ -111,14 +111,14 @@ useFrame((_, delta) => {
   })
 
   return (
-    <primitive object={scene} ref={avatarRef} scale={0.7} position={[0, -0.3, 0]}>
+    <primitive object={scene} ref={avatarRef} scale={0.8} position={[0, -0.7, 0]}>
       {text && (
         <Html position={[0, 2.2, 0]} center>
           <div style={{
             background: 'white',
             padding: '10px 14px',
             borderRadius: '12px',
-            maxWidth: '300px',
+            maxWidth: '400px',
             boxShadow: '0 4px 8px rgba(0,0,0,0.2)'
           }}>
             <p style={{ margin: 0 }}>{text}</p>
@@ -131,10 +131,10 @@ useFrame((_, delta) => {
 
 export default function AvatarModel({ isSpeaking, text }: AvatarProps) {
   return (
-    <div className="relative w-full h-[700px] bg-white">
+    <div className="relative w-[40%] h-[700px] bg-white">
       <Canvas camera={{ position: [0, 2, 3], fov: 30 }}>
-        <ambientLight intensity={1.2} />
-        <directionalLight position={[2, 2, 5]} />
+        <ambientLight intensity={1.7} />
+        <directionalLight position={[2, 4, 5]} />
         <Suspense fallback={null}>
           <Avatar isSpeaking={isSpeaking} text={text} />
           <OrbitControls enableZoom={false} />
