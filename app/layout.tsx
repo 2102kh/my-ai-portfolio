@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="sv">
       <body className={`${inter.className} bg-gray-50 text-gray-900`}>
-        <header className="p-4 bg-white shadow-md flex justify-between position: sticky top-0 z-10">
+        <header className="p-4 bg-[var(--navbar)] text-[var(--foreground)]shadow-md flex justify-between position: sticky top-0 z-10">
           <h1 className="text-xl font-bold">👩‍💻 Mitt Portfolio</h1>
           <nav className="space-x-8">
             <Link href="/">Start</Link>
@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <Link href="/about">Om mig</Link>
           </nav>
         </header>
-        <main>{children}</main>
+        <main className='min-h-screen'>{children}</main>
         <footer className="p-4 text-center text-sm text-gray-500">© {new Date().getFullYear()} Mitt AI-Portfolio</footer>
       </body>
     </html>

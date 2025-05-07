@@ -2,27 +2,36 @@
 
 @media (prefers-color-scheme: light) {
   :root {
-    --background: #ffffff;
-    --foreground: #171717;
+    --background: #e0dbdc;
+    --navbar:#fcfafa;
+    --foreground: #975a5a;
+  
+    --primary: #995452;         
+    --secondary: #bfb6b5;       
+    --accent: #f3eeee;          
+  
+    --chat-bg: var(--accent);
+    --chat-button: var(--primary);
+    --chat-text: var(--foreground);
+  
+    --border: #d5c8c4;
+    --shadow: rgba(57, 37, 37, 0.06);
+  
+    
+    font-family: 'Inter', sans-serif;
+  }
 
-    --primary: #4B3CFF;
-    --secondary: #00E5FF;
-    --accent: #a79cf995;;
-
-    --border: #e0e0e0;
-    --shadow: rgba(0, 0, 0, 0.05);
-   
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --background: #4B3CFF;
-        --foreground: #ededed;
-      }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --background: #4B3832;     
+      --foreground: #FFFDFB;     
     }
   }
-}
+
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-family, 'Inter', sans-serif);
+}
 }

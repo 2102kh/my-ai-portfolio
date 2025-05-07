@@ -132,7 +132,7 @@ function Avatar({ isSpeaking, text }: AvatarProps) {
 
 export default function AvatarModel({ isSpeaking, text }: AvatarProps) {
   return (
-    <div className="relative w-full h-[700px] flex items-center justify-center">
+    <div className="flex flex-col  gap-4 items-center justify-center w-full h-[400px] lg:h-[700px] ">
       <Canvas
         shadows
         camera={{ position: [-1.182, 0.460, 2.807], fov: 30 }}

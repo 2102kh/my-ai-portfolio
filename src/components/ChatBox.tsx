@@ -17,42 +17,42 @@ export default function ChatBox({
   const [inputText, setInputText] = useState('')
   const [loading, setLoading] = useState(false)
 
-  
-const speak = async (text: string) => {
-  try {
-    setIsSpeaking(true)
 
-    const res = await fetch('/api/speak', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text }),
-    })
+  const speak = async (text: string) => {
+    try {
+      setIsSpeaking(true)
 
-    if (!res.ok) {
-      console.error('❌ Fel från /api/speak:', await res.text())
+      const res = await fetch('/api/speak', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      })
+
+      if (!res.ok) {
+        console.error('❌ Fel från /api/speak:', await res.text())
+        setIsSpeaking(false)
+        return
+      }
+
+      const blob = await res.blob()
+      const url = URL.createObjectURL(blob)
+
+      const audio = new Audio(url)
+      audio.onended = () => setIsSpeaking(false)
+      audio.onerror = () => {
+        console.error('❌ Ljuduppspelning misslyckades.')
+        setIsSpeaking(false)
+      }
+
+      audio.play().catch((err) => {
+        console.error('❌ Kunde inte spela upp ljud:', err)
+        setIsSpeaking(false)
+      })
+    } catch (err) {
+      console.error('❌ speak() error:', err)
       setIsSpeaking(false)
-      return
     }
-
-    const blob = await res.blob()
-    const url = URL.createObjectURL(blob)
-
-    const audio = new Audio(url)
-    audio.onended = () => setIsSpeaking(false)
-    audio.onerror = () => {
-      console.error('❌ Ljuduppspelning misslyckades.')
-      setIsSpeaking(false)
-    }
-
-    audio.play().catch((err) => {
-      console.error('❌ Kunde inte spela upp ljud:', err)
-      setIsSpeaking(false)
-    })
-  } catch (err) {
-    console.error('❌ speak() error:', err)
-    setIsSpeaking(false)
   }
-}
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -86,8 +86,7 @@ const speak = async (text: string) => {
   }
 
   return (
-    <div className='p-6 shadow-md w-full max-w-md mx-auto bg-white text-[var(--primary)] rounded-lg shadow-lg">
-'>
+    <div className="bg-white text-[var(--foreground)] p-6 rounded-lg shadow-md max-w-md w-full">
       <h2 className='text-lg font-bold mb-4'>Chat with AI</h2>
       <form onSubmit={handleSubmit} className='flex flex-col space-y-4 '>
         <textarea
@@ -99,9 +98,8 @@ const speak = async (text: string) => {
         />
         <button
           type='submit'
-          className={`bg-[var(--primary)] text-white py-2 px-4 rounded-lg ${
-            loading ? 'opacity-50 cursor-not-allowed' : ''
-          }`}
+          className={`bg-[var(--primary)] hover:bg-[var(--chat-primary-hover)] text-white py-2 px-4 rounded-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''
+            }`}
           disabled={loading}
         >
           {loading ? 'Laddar...' : 'Skicka'}
@@ -115,12 +113,12 @@ const speak = async (text: string) => {
             className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}
           >
             <div
-              className={`max-w-[80%] p-3 rounded-lg text-sm ${
-                msg.sender === 'user'
-                  ? 'bg-blue-500 text-white rounded-br-none'
-                  : 'bg-gray-100 text-gray-800 rounded-bl-none flex items-start gap-2'
-              }`}
+              className={`max-w-[80%] p-3 rounded-lg text-sm ${msg.sender === 'user'
+                  ? 'bg-[var(--chat-user-bubble)] text-[var(--chat-user-text)] rounded-br-none'
+                  : 'bg-[var(--chat-bot-bubble)] text-[var(--foreground)] rounded-bl-none flex items-start gap-2'
+                }`}
             >
+
               {msg.sender === 'bot' && <span className="text-xl">🤖</span>}
               <p>{msg.text}</p>
             </div>
