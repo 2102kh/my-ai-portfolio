@@ -86,10 +86,10 @@ const speak = async (text: string) => {
   }
 
   return (
-    <div className='p-6 shadow-md w-full max-w-md mx-auto  bg-[var(--secondary)] text-[var(--primary)] rounded-lg shadow-lg">
+    <div className='p-6 shadow-md w-full max-w-md mx-auto bg-white text-[var(--primary)] rounded-lg shadow-lg">
 '>
       <h2 className='text-lg font-bold mb-4'>Chat with AI</h2>
-      <form onSubmit={handleSubmit} className='flex flex-col space-y-4'>
+      <form onSubmit={handleSubmit} className='flex flex-col space-y-4 '>
         <textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}

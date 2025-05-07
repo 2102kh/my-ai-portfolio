@@ -1,3 +1,4 @@
+
 'use client'
 
 import { OrbitControls, useGLTF, useFBX, Html } from '@react-three/drei'
@@ -12,25 +13,42 @@ type AvatarProps = {
 
 const AVATAR_URL = 'https://models.readyplayer.me/6817b8683117d5905dab4cd9.glb'
 
+function OfficeRoom() {
+  const { scene } = useGLTF('/models/floor_lamp_de_piso.glb')
+  return (
+    <primitive
+      object={scene}
+      scale={0.6}
+      position={[0, -1.1, -0.8]}
+      rotation={[0, 4.9, 0]}
+    />
+  )
+}
+
+
 function Avatar({ isSpeaking, text }: AvatarProps) {
   const { scene } = useGLTF(AVATAR_URL)
 
-  const idleFbx = useFBX('/animations/StandingIdle.fbx')
-  const talkingFbx = useFBX('/animations/Talking2.fbx')
-  const speakingFbx = useFBX('/animations/Talking1.fbx')
-  const talkingFbx2 = useFBX('/animations/Talking.fbx')
 
+  const idleFbx = useFBX('/animations/StandingIdle.fbx')
   const avatarRef = useRef<THREE.Object3D>(null)
   const mixerRef = useRef<THREE.AnimationMixer | null>(null)
 
+  let mouthTime = 0
+  let mouthOpen = false
+  function logAllNames(object: THREE.Object3D, depth = 0) {
+    console.log(`${' '.repeat(depth * 2)}${object.name}`);
+    object.children.forEach(child => logAllNames(child, depth + 1));
+  }
+
   useEffect(() => {
-    if (
-      !avatarRef.current ||
-      !idleFbx.animations.length ||
-      !talkingFbx.animations.length ||
-      !speakingFbx.animations.length ||
-      !talkingFbx2.animations.length
-    ) return
+    if (scene) {
+      console.log("📦 Hela scenstrukturen:");
+      logAllNames(scene);
+    }
+  }, [scene]);
+  useEffect(() => {
+    if (!avatarRef.current || !idleFbx.animations.length) return
 
     const mixer = new THREE.AnimationMixer(avatarRef.current)
     mixerRef.current = mixer
@@ -41,65 +59,32 @@ function Avatar({ isSpeaking, text }: AvatarProps) {
     return () => {
       mixer.stopAllAction()
     }
-  }, [idleFbx.animations, talkingFbx.animations, speakingFbx.animations, talkingFbx2.animations])
+  }, [idleFbx.animations])
 
-  useEffect(() => {
-    if (!mixerRef.current) return
+  useFrame((_, delta) => {
+    mixerRef.current?.update(delta)
 
-    const mixer = mixerRef.current
-    const idleAction = mixer.clipAction(idleFbx.animations[0])
-    const talkingAction = mixer.clipAction(talkingFbx.animations[0])
-    const speakingAction = mixer.clipAction(speakingFbx.animations[0])
-    const talkingAction2 = mixer.clipAction(talkingFbx2.animations[0])
+    const headMesh = avatarRef.current?.getObjectByName('Wolf3D_Head') as THREE.Mesh
+    const mouthIndex = headMesh?.morphTargetDictionary?.mouthOpen
+    const eyeIndex = headMesh?.morphTargetDictionary?.eyesClosed
+    const headBone = scene.getObjectByName('Head')
+    const leftArm = scene.getObjectByName('LeftArm')
 
+
+    // Munrörelse
     if (isSpeaking) {
-      idleAction.fadeOut(0.5)
-      talkingAction.reset().fadeIn(0.4).play()
-      speakingAction.reset().fadeIn(0.4).play()
-      talkingAction2.reset().fadeIn(0.4).play()
-    } else {
-      talkingAction.fadeOut(0.3).stop()
-      speakingAction.fadeOut(0.3).stop()
-      talkingAction2.fadeOut(0.3).stop()
-      idleAction.reset().fadeIn(0.5).play()
-    }
-  }, [isSpeaking])
-
-  //Mun och ögon
-  let t = 0
-let mouthTime = 0
-let mouthOpen = false
-
-useFrame((_, delta) => {
-  mixerRef.current?.update(delta)
-  t += delta
-  mouthTime += delta
-
-  const headMesh = avatarRef.current?.getObjectByName('Wolf3D_Head') as THREE.Mesh
-  const mouthIndex = headMesh?.morphTargetDictionary?.mouthOpen
-  const eyeIndex = headMesh?.morphTargetDictionary?.eyesClosed
-
-  if (isSpeaking && mouthTime > 0.4) {
-    mouthOpen = !mouthOpen
-    mouthTime = 0
-  }
-
-  if (mouthIndex !== undefined) {
-    headMesh.morphTargetInfluences![mouthIndex] = isSpeaking && mouthOpen ? 0.5 : 0
-  }
-
-  //Blinkar slumpmässigt
-  if (eyeIndex !== undefined && Math.random() < delta * 0.25) {
-    headMesh.morphTargetInfluences![eyeIndex] = 1
-    setTimeout(() => {
-      if (headMesh.morphTargetInfluences) {
-        headMesh.morphTargetInfluences[eyeIndex] = 0
+      mouthTime += delta
+      if (mouthTime > 0.5) {
+        mouthOpen = !mouthOpen
+        mouthTime = 0
       }
-    }, 100 + Math.random() * 100)
-  }
+    }
 
+    if (mouthIndex !== undefined) {
+      headMesh.morphTargetInfluences![mouthIndex] = isSpeaking && mouthOpen ? 0.6 : 0
+    }
 
-    //Slumpmässig blinkning
+    // Blinkning
     if (eyeIndex !== undefined && Math.random() < delta * 0.25) {
       headMesh.morphTargetInfluences![eyeIndex] = 1
       setTimeout(() => {
@@ -107,6 +92,22 @@ useFrame((_, delta) => {
           headMesh.morphTargetInfluences[eyeIndex] = 0
         }
       }, 100 + Math.random() * 100)
+    }
+
+    // Manuell rörelse
+    if (isSpeaking) {
+      if (headBone) {
+        if (headBone) {
+          headBone.rotation.x = 0.1 * Math.sin(Date.now() * 0.001)
+          headBone.rotation.y = 0.1 * Math.sin(Date.now() * 0.0015)
+          headBone.rotation.z = 0.05 * Math.sin(Date.now() * 0.0012)
+        }
+      }
+      if (leftArm) {
+        //leftArm.rotation.x = 0  * Math.sin(Date.now() * 0.0001)
+        //leftArm.rotation.z = -0.3 * Math.sin(Date.now() * 0.0015)
+      }
+
     }
   })
 
@@ -131,13 +132,16 @@ useFrame((_, delta) => {
 
 export default function AvatarModel({ isSpeaking, text }: AvatarProps) {
   return (
-    <div className="relative w-[40%] h-[700px] bg-white">
-      <Canvas camera={{ position: [0, 2, 3], fov: 30 }}>
+    <div className="relative w-full h-[700px] flex items-center justify-center">
+      <Canvas
+        shadows
+        camera={{ position: [-1.182, 0.460, 2.807], fov: 30 }}
+      >
         <ambientLight intensity={1.7} />
-        <directionalLight position={[2, 4, 5]} />
+        <directionalLight position={[2, 4, 5]} intensity={0.5} color="white" />
         <Suspense fallback={null}>
+          <OfficeRoom />
           <Avatar isSpeaking={isSpeaking} text={text} />
-          <OrbitControls enableZoom={false} />
         </Suspense>
       </Canvas>
     </div>

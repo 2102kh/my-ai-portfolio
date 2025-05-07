@@ -7,8 +7,8 @@ export default function Home() {
   const [isSpeaking, setIsSpeaking] = useState(false)
 
   return (
-    <section className="min-h-screen w-full flex flex-col lg:flex-row gap-8 p-4 bg-[var(--muted)] text-[var(--text)] rounded-lg shadow-lg">
-
+    <section className="relative min-h-screen w-full flex flex-col lg:flex-row gap-8 p-4 bg-[var(--muted)] text-[var(--text)] rounded-lg shadow-lg">
+  <div className="h-full absolute inset-0 z-[-1] bg-gradient-to-br from-[#7b69ee] via-[#bcb7e9] to-[#1ce5fc]"></div>
     
       <div className="w-full lg:w-1/2 h-auto flex items-center justify-center px-4 text-center">
         <p className="text-lg max-w-xl">
@@ -21,13 +21,15 @@ export default function Home() {
           Fråga på – hon (och jag!) finns här för att göra allt lite enklare för dig. 😊
         </p>
       </div>
-
+     
       
-      <div className="w-full flex items-center justify-center text-center rounded-lg shadow-lg bg-[var(--muted)] text-[var(--foreground)] border-2 border-[var(--border)] gap-5 p-4">
+      <div className="w-full flex items-center justify-center text-center  text-[var(--foreground)] border-2 border-[var(--border)] gap-5 p-4">
+      
+
         <AvatarModel isSpeaking={isSpeaking} />
         <ChatBox isSpeaking={isSpeaking} setIsSpeaking={setIsSpeaking} />
       </div>
-
+      
     </section>
   )
 }

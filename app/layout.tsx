@@ -14,7 +14,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="sv">
       <body className={`${inter.className} bg-gray-50 text-gray-900`}>
-        <header className="p-4 bg-white shadow-md flex justify-between">
+        <header className="p-4 bg-white shadow-md flex justify-between position: sticky top-0 z-10">
           <h1 className="text-xl font-bold">👩‍💻 Mitt Portfolio</h1>
           <nav className="space-x-8">
             <Link href="/">Start</Link>
