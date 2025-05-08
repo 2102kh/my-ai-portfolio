@@ -13,11 +13,11 @@ export default function Visuals() {
   
     return (
       <>
-        <mesh ref={ref1} position={[-2, 0, -3]}>
+        <mesh ref={ref1} position={[-0.6,0, -4]}>
           <torusGeometry args={[1, 0.2, 16, 100]} />
           <meshStandardMaterial color="#d1d1d9" transparent opacity={0.3} />
         </mesh>
-        <mesh ref={ref2} position={[0.5, -1, -2]}>
+        <mesh ref={ref2} position={[0.8, -0.7, -1.9]}>
           <boxGeometry args={[1, 1, 1]} />
           <meshStandardMaterial color="#c4c4c4" transparent opacity={0.3} />
         </mesh>

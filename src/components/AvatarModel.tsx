@@ -15,18 +15,27 @@ type AvatarProps = {
 const AVATAR_URL = 'https://models.readyplayer.me/6817b8683117d5905dab4cd9.glb'
 
 function OfficeRoom() {
-  const { scene } = useGLTF('/models/floor_lamp_de_piso.glb')
+  const {scene}  = useGLTF('/models/snake.glb')
   return (
     <primitive
       object={scene}
-      scale={0.6}
-      position={[0, -0.5, -1]}
-      rotation={[0, 4.9, 0]}
+      scale={1}
+      position={[1.7,-1.3, -0.1]}
+     
     />
   )
 }
-
-
+function Lampa() {
+  const {scene}  = useGLTF('/models/floor_lamp.glb')
+  return (
+    <primitive
+      object={scene}
+      scale={0.8}
+      position={[-0.2, -0.6, -0.9]}
+     
+    />
+  )
+}
 function Avatar({ isSpeaking, text }: AvatarProps) {
   const { scene } = useGLTF(AVATAR_URL)
 
@@ -133,16 +142,17 @@ function Avatar({ isSpeaking, text }: AvatarProps) {
 
 export default function AvatarModel({ isSpeaking, text }: AvatarProps) {
   return (
-    <div className="flex flex-col gap-4 items-center justify-center w-1/2 h-[400px] lg:h-[600px]">
+    <div className="flex flex-col gap-4  items-center justify-center w-full h-[400px] lg:h-[600px]">
       <Canvas
         shadows
         camera={{ position: [-1.182, 0.460, 2.807], fov: 30 }}
       >
-        <ambientLight intensity={1.7} />
-        <directionalLight position={[2, 4, 5]} intensity={0.5} color="white" />
+        <ambientLight intensity={1.9} />
+        <directionalLight position={[1, 4, 5]} intensity={0.5} color="white" />
         <Suspense fallback={null}>
-          <Visuals/>
+           <Visuals/> 
           <OfficeRoom />
+          <Lampa />
           <Avatar isSpeaking={isSpeaking} text={text} />
         </Suspense>
       </Canvas>

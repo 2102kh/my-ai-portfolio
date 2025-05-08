@@ -9,7 +9,7 @@ export default function Home() {
   const [isSpeaking, setIsSpeaking] = useState(false)
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col gap-8 text-[var(--text)] rounded-lg">
+    <section className="relative min-h-screen w-full flex flex-col text-[var(--text)] rounded-lg">
      
      <div style={{ background: 'var(--gradient-bg)' }}>
 
@@ -31,7 +31,7 @@ export default function Home() {
         </p>
       </div>
 
-      <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center text-[var(--color-text)] border border-[var(--color-border)] rounded-xl p-8  gap-3.5">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center text-[var(--color-text)] border:lg border-[var(--color-border)] rounded-xl px-6 py-8 lg:px-16 gap-3.5">
         <AvatarModel isSpeaking={isSpeaking} />
         <ChatBox isSpeaking={isSpeaking} setIsSpeaking={setIsSpeaking} />
       </div>

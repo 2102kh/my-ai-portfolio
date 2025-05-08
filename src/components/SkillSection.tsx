@@ -60,7 +60,7 @@ export default function SkillsSection() {
         <section id='skills' className="py-16 px-4 bg-[var(--color-latte)] text-[var(--foreground)]">
             <h2 className="text-3xl font-bold mb-10 text-center text-[var(--color-accent)]">Mina Färdigheter</h2>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-10 max-w-6xl mx-auto">
                 {skills.map((group, i) => (
                     <div key={i}>
                         <h3 className="text-xl font-semibold mb-4 text-[var(--color-accent)] ">{group.category}</h3>
