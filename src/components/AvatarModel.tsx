@@ -5,6 +5,7 @@ import { OrbitControls, useGLTF, useFBX, Html } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Suspense, useEffect, useRef } from 'react'
 import * as THREE from 'three'
+import Visuals from './Visuals'
 
 type AvatarProps = {
   isSpeaking: boolean
@@ -19,7 +20,7 @@ function OfficeRoom() {
     <primitive
       object={scene}
       scale={0.6}
-      position={[0, -1.1, -0.8]}
+      position={[0, -0.5, -1]}
       rotation={[0, 4.9, 0]}
     />
   )
@@ -132,7 +133,7 @@ function Avatar({ isSpeaking, text }: AvatarProps) {
 
 export default function AvatarModel({ isSpeaking, text }: AvatarProps) {
   return (
-    <div className="flex flex-col  gap-4 items-center justify-center w-full h-[400px] lg:h-[700px] ">
+    <div className="flex flex-col gap-4 items-center justify-center w-1/2 h-[400px] lg:h-[600px]">
       <Canvas
         shadows
         camera={{ position: [-1.182, 0.460, 2.807], fov: 30 }}
@@ -140,6 +141,7 @@ export default function AvatarModel({ isSpeaking, text }: AvatarProps) {
         <ambientLight intensity={1.7} />
         <directionalLight position={[2, 4, 5]} intensity={0.5} color="white" />
         <Suspense fallback={null}>
+          <Visuals/>
           <OfficeRoom />
           <Avatar isSpeaking={isSpeaking} text={text} />
         </Suspense>

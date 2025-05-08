@@ -1,34 +1,44 @@
 'use client'
 import AvatarModel from '@/components/AvatarModel'
+
 import ChatBox from '@/components/ChatBox'
+import SkillsSection from '@/components/SkillSection'
 import { useState } from 'react'
 
 export default function Home() {
   const [isSpeaking, setIsSpeaking] = useState(false)
 
   return (
-    <section className="relative min-h-screen w-full flex flex-col lg:flex-row gap-8 p-4 bg-[var(--muted)] text-[var(--text)] rounded-lg shadow-lg">
-      <div className="absolute inset-0 z-[-1] bg-gradient-to-br from-[#fcfafa] via-[#f7f2f1] to-[#8f5547]" />
-      <div className="w-full lg:w-1/2 h-auto flex items-center justify-center px-4 text-center">
-        <p className="text-lg max-w-xl">
+    <section className="relative min-h-screen w-full flex flex-col gap-8 text-[var(--text)] rounded-lg">
+     
+     <div style={{ background: 'var(--gradient-bg)' }}>
+
+      
+
+     
+      <div className="text-center max-w-2xl mx-auto space-y-4 p-4">
+        <h2 className="text-2xl font-semibold text-[var(--color-text-main)] border-b-2 border-[var(--color-border)] w-fit mx-auto pb-2">
           Hej! Jag är Nigora 👋
-          <br />
-          Jag bygger smarta gränssnitt med React, AI och en stor dos kärlek för detaljer.
-          <br /><br />
-          Det här är Docka – min AI-assistent. Hon vet allt om mig och kan hjälpa dig med svar på dina frågor, visa mina projekt och guida dig genom min digitala värld.
-          <br /><br />
-          Fråga på – hon (och jag!) finns här för att göra allt lite enklare för dig. 😊
+        </h2>
+        <p className="text-[var(--color-text-main)] leading-relaxed">
+          Jag bygger smarta gränssnitt med <span className="font-semibold text-[var(--color-accent)]">React</span>, <span className="font-semibold text-[var(--color-accent)]">AI</span> och en stor dos kärlek för detaljer.
+        </p>
+        <p className="text-[var(--color-text-light)] leading-relaxed">
+          Det här är <strong>Docka</strong> - min AI-assistent. Hon vet allt om mig och kan hjälpa dig med svar på dina frågor, visa mina projekt och guida dig genom min digitala värld.
+        </p>
+        <p className="italic text-[var(--color-accent)] font-medium">
+          Fråga på - vi finns här för att göra allt lite enklare för dig! 😊
         </p>
       </div>
 
-
-      <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center  text-[var(--foreground)] border-2 border-[var(--border)] p-4">
-
-
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center text-[var(--color-text)] border border-[var(--color-border)] rounded-xl p-8  gap-3.5">
         <AvatarModel isSpeaking={isSpeaking} />
         <ChatBox isSpeaking={isSpeaking} setIsSpeaking={setIsSpeaking} />
       </div>
+      </div>
 
+     
+      <SkillsSection />
     </section>
   )
 }

@@ -86,26 +86,25 @@ export default function ChatBox({
   }
 
   return (
-    <div className="bg-white text-[var(--foreground)] p-6 rounded-lg shadow-md max-w-md w-full">
-      <h2 className='text-lg font-bold mb-4'>Chat with AI</h2>
+    <div className="bg-white text-[var(--foreground)] p-6 rounded-lg shadow-2xl w-full">
+      <h2 className='text-lg font-bold mb-4'>Chat with Docka</h2>
       <form onSubmit={handleSubmit} className='flex flex-col space-y-4 '>
         <textarea
           value={inputText}
           onChange={(e) => setInputText(e.target.value)}
           rows={4}
           className='p-2 border rounded-lg'
-          placeholder='Skriv ditt meddelande här...'
+          placeholder='Skriv till mig - jag är här för att hjälpa dig 💡'
         />
         <button
           type='submit'
-          className={`bg-[var(--primary)] hover:bg-[var(--chat-primary-hover)] text-white py-2 px-4 rounded-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''
+          className={`bg-[var(--color-accent)] hover:bg-[var(--color-hover)] text-white py-2 px-4 rounded-lg ${loading ? 'opacity-50 cursor-not-allowed' : ''
             }`}
           disabled={loading}
         >
           {loading ? 'Laddar...' : 'Skicka'}
         </button>
       </form>
-
       <div className="mt-6 space-y-2 overflow-y-auto max-h-60">
         {messages.map((msg, index) => (
           <div

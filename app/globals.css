@@ -1,37 +1,30 @@
+
+
 @import "tailwindcss";
 
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #e0dbdc;
-    --navbar:#fcfafa;
-    --foreground: #975a5a;
+:root {
+  --color-beige: #f6f1eb;
+  --color-latte: #e7dcd2;
+  --color-cappuccino: #d6b7a2;
+  --color-hover: #C97260;
+  --color-accent:#b1503c;
+  --color-text-main: #4b3832;
+  --color-border: #e0d5cc;
+  --color-shadow: rgba(150, 115, 100, 0.08);
+  --color-skills: #e7b4aa;
+  --gradient-bg: linear-gradient(135deg, #f8f6f3, #ecd8cc, #b86c58);
+  /* linear-gradient(135deg, #f6f1eb, #e5dfda,#b1503c); */
+  --gradient-bg-2: linear-gradient(135deg, #fcfafa, #f7f2f1, #8f5547);
   
-    --primary: #995452;         
-    --secondary: #bfb6b5;       
-    --accent: #f3eeee;          
-  
-    --chat-bg: var(--accent);
-    --chat-button: var(--primary);
-    --chat-text: var(--foreground);
-  
-    --border: #d5c8c4;
-    --shadow: rgba(57, 37, 37, 0.06);
-  
-    
-    font-family: 'Inter', sans-serif;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --background: #4B3832;     
-      --foreground: #FFFDFB;     
-    }
-  }
-
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-family, 'Inter', sans-serif);
+  font-family: 'Inter', sans-serif;
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-beige: #2b1f1a;
+    --color-text-main: #f3e8e2;
+    --color-border: #7b5e51;
+    --color-accent: #cc9988;
+    --color-shadow: rgba(255, 255, 255, 0.05);
+  }
 }
