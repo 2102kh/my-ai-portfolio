@@ -45,11 +45,7 @@ function Avatar({ isSpeaking, text }: AvatarProps) {
 
   let mouthTime = 0
   let mouthOpen = false
-  function logAllNames(object: THREE.Object3D, depth = 0) {
-    console.log(`${' '.repeat(depth * 2)}${object.name}`);
-    object.children.forEach(child => logAllNames(child, depth + 1));
-  }
-
+  
   
   useEffect(() => {
     if (!avatarRef.current || !idleFbx.animations.length) return

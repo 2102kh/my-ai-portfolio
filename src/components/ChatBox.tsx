@@ -72,6 +72,7 @@ export default function ChatBox({
       const botMessage: ChatMessage = { sender: 'bot', text: data.reply }
       setMessages((prev) => [...prev, botMessage])
       speak(data.reply)
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (err) {
       setMessages((prev) => [
         ...prev,
