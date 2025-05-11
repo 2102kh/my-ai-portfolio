@@ -33,7 +33,7 @@ export default function Home() {
 
       <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center text-[var(--color-text)] border:lg border-[var(--color-border)] rounded-xl px-6 py-8 lg:px-16 gap-3.5">
         <AvatarModel isSpeaking={isSpeaking} />
-        <ChatBox isSpeaking={isSpeaking} setIsSpeaking={setIsSpeaking} />
+        <ChatBox setIsSpeaking={setIsSpeaking} />
       </div>
       </div>
 

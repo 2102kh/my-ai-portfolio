@@ -1,7 +1,6 @@
-
 'use client'
 
-import { OrbitControls, useGLTF, useFBX, Html } from '@react-three/drei'
+import {useGLTF, useFBX, Html } from '@react-three/drei'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Suspense, useEffect, useRef } from 'react'
 import * as THREE from 'three'
@@ -51,12 +50,7 @@ function Avatar({ isSpeaking, text }: AvatarProps) {
     object.children.forEach(child => logAllNames(child, depth + 1));
   }
 
-  useEffect(() => {
-    if (scene) {
-      console.log("📦 Hela scenstrukturen:");
-      logAllNames(scene);
-    }
-  }, [scene]);
+  
   useEffect(() => {
     if (!avatarRef.current || !idleFbx.animations.length) return
 

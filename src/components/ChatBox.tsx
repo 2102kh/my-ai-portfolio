@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import {useState } from 'react'
 
 type ChatMessage = {
   sender: 'user' | 'bot'
@@ -7,10 +7,8 @@ type ChatMessage = {
 }
 
 export default function ChatBox({
-  isSpeaking,
   setIsSpeaking,
 }: {
-  isSpeaking: boolean
   setIsSpeaking: (value: boolean) => void
 }) {
   const [messages, setMessages] = useState<ChatMessage[]>([])

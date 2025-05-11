@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
         "Content-Length": audioBuffer.length.toString(),
       },
     })
-  } catch (error: any) {
+  } catch (error) {
     console.error("Polly-fel:", error)
     return new NextResponse("Fel från Polly", { status: 500 })
   }

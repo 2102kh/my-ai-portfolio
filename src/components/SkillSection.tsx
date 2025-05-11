@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { FaReact, FaHtml5, FaCss3Alt, FaVuejs, FaNodeJs, FaGitAlt } from 'react-icons/fa'
 import { SiRedux, SiTailwindcss, SiMongodb, SiFigma, SiNextdotjs, SiJavascript, SiExpress, SiFirebase, SiTypescript, SiFramer } from 'react-icons/si'
-import { FiBell, FiMic, FiVolume2 } from 'react-icons/fi'
+import { FiBell, FiVolume2 } from 'react-icons/fi'
 import { TbCube } from 'react-icons/tb'
 
 
