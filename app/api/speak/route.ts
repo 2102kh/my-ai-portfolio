@@ -12,7 +12,6 @@ const polly = new PollyClient({
 
 export async function POST(req: NextRequest) {
   const { text } = await req.json()
-
   const command = new SynthesizeSpeechCommand({
     OutputFormat: "mp3",
     Text: text,
@@ -20,16 +19,13 @@ export async function POST(req: NextRequest) {
     LanguageCode: "sv-SE",    
     Engine: "neural",       
   })
-
   try {
     const response = await polly.send(command)
 
     if (!response.AudioStream) {
       return new NextResponse("Ingen ljudström från Polly", { status: 500 })
     }
-
     const audioBuffer = await response.AudioStream.transformToByteArray()
-
     return new NextResponse(audioBuffer, {
       headers: {
         "Content-Type": "audio/mpeg",

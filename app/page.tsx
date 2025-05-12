@@ -2,6 +2,7 @@
 import AvatarModel from '@/components/AvatarModel'
 
 import ChatBox from '@/components/ChatBox'
+import ProjectsSection from '@/components/ProjectsSection'
 import SkillsSection from '@/components/SkillSection'
 import { useState } from 'react'
 
@@ -11,11 +12,7 @@ export default function Home() {
   return (
     <section className="relative min-h-screen w-full flex flex-col text-[var(--text)] rounded-lg">
      
-     <div style={{ background: 'var(--gradient-bg)' }}>
-
-      
-
-     
+     <div style={{ background: 'var(--gradient-bg)' }}> 
       <div className="text-center max-w-2xl mx-auto space-y-4 p-4">
         <h2 className="text-2xl font-semibold text-[var(--color-text-main)] border-b-2 border-[var(--color-border)] w-fit mx-auto pb-2">
           Hej! Jag är Nigora 👋
@@ -30,15 +27,13 @@ export default function Home() {
           Fråga på - vi finns här för att göra allt lite enklare för dig! 😊
         </p>
       </div>
-
       <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center text-[var(--color-text)] border:lg border-[var(--color-border)] rounded-xl px-6 py-8 lg:px-16 gap-3.5">
         <AvatarModel isSpeaking={isSpeaking} />
         <ChatBox setIsSpeaking={setIsSpeaking} />
       </div>
-      </div>
-
-     
+      </div> 
       <SkillsSection />
+      <ProjectsSection />
     </section>
   )
 }
