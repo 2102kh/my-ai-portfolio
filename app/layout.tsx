@@ -24,7 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </nav>
         </header>
         <main className='min-h-screen'>
-        
+
           {children}
         </main>
         <footer className="p-4 text-center text-sm text-gray-500 bg-[var(--color-beige)]">© {new Date().getFullYear()} Mitt AI-Portfolio</footer>
