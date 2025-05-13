@@ -1,12 +1,16 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import { Project } from '../data/projectsData'
 import Link from 'next/link'
 
+
+
 const ProjectCard = ({ project }: { project: Project }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
   return (
     <div className="min-w-[300px] bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-xl">
-      <div className=" bg-[var(--color-beige)] justify-center flex items-center ">
+      <div className="bg-[var(--color-beige)] justify-center flex items-center">
         {project.image && Array.isArray(project.image) ? (
           <div className={`flex ${project.image.length > 1 ? 'flex-row' : 'flex-col'} gap-8 p-2 items-center justify-center`}>
             {project.image.map((src, i) => (
@@ -14,7 +18,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 key={i}
                 src={src}
                 alt={`${project.title} bild ${i + 1}`}
-                className={`rounded-xl  ${(project.image ?? []).length > 1 ? 'w-1/2 h-[220px]' : 'w-full h-[240px] object-cover'}`}
+                className={`rounded-xl ${(project.image?.length ?? 0) > 1 ? 'w-1/2 h-[240px]' : 'w-full h-[240px] object-cover'}`}
               />
             ))}
           </div>
@@ -22,35 +26,56 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <img
             src={typeof project.image === 'string' ? project.image : ''}
             alt={project.title}
-            className="w-full h-[240px] object-contain rounded-xl "
+            className="w-full h-[240px] object-contain rounded-xl"
           />
         )}
-
-
       </div>
       <div className="p-4">
-        <h2 className='text-[var(--color-text-main)]'>{project.category}</h2>
+        <h2 className="text-[var(--color-text-main)]">{project.category}</h2>
         <h3 className="text-xl text-[var(--color-accent)] font-semibold">{project.title}</h3>
-        <p className="text-sm text-gray-600 mt-1">{project.description}</p>
+        <p className={`text-sm text-gray-600 mt-1 ${!isExpanded ? 'line-clamp-3' : ''}`}>
+          {project.description}
+        </p>
+        {project.description.length > 100 && (
+          <button
+            onClick={() => setIsExpanded(!isExpanded)}
+            className="text-[var(--color-accent)] hover:underline text-sm mt-1"
+          >
+            {isExpanded ? 'Läs mindre' : 'Läs mer..'}
+          </button>
+        )}
         <div className="mt-4 flex flex-wrap gap-2 text-sm">
           {project.stack.map((tech) => (
-            <span key={tech} className="bg-gray-100 px-2 py-1 rounded">{tech}</span>
+            <span key={tech} className="bg-gray-100 text-gray-900 px-2 py-1 rounded">
+              {tech}
+            </span>
           ))}
         </div>
         <div className="mt-4 flex gap-4">
-          {project.github && <a href={project.github} target="_blank" className="text-[var(--color-hover)] hover:underline">GitHub</a>}
-          {/* {project.live && <a href={project.live} target="_blank" className="text-[var(--color-latte)] hover:underline">Live</a>} */}
+          {project.github && (
+            <a href={project.github} target="_blank" className="text-[var(--color-hover)] hover:underline">
+              GitHub
+            </a>
+          )}
+          {/* {project.live && (
+            <a href={project.live} target="_blank" className="text-[var(--color-latte)] hover:underline">
+              Live
+            </a>
+          )} */}
         </div>
         {project.link && (
           <Link href={project.link}>
-            <span className="text-[var(--color-accent)]  hover:underline">
-              {project.category === 'App' ? 'Google Play' : 'Länk till websida'}</span>
+            <span className="text-[var(--color-accent)] hover:underline">
+              {project.category === 'App' ? 'Google Play' : 'Länk till webbsida'}
+            </span>
           </Link>
         )}
-        <p className="mt-2 text-xs text-gray-400">{project.role} · {project.date}</p>
+        <p className="mt-2 text-xs text-gray-400">
+          {project.role} · {project.date}
+        </p>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProjectCard
+export default ProjectCard;
