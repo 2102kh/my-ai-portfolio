@@ -28,7 +28,7 @@ export default function Home() {
           Fråga på - vi finns här för att göra allt lite enklare för dig! 😊
         </p>
       </div>
-      <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center text-[var(--color-text)] border:lg border-[var(--color-border)] rounded-xl px-6 py-8 lg:px-16 gap-3.5">
+      <div className="w-full flex flex-col sm:flex-row items-center justify-center text-center text-[var(--color-text)] rounded-xl px-10 py-10 lg:px-10 gap-3.5 ">
         <AvatarModel isSpeaking={isSpeaking} />
         <ChatBox setIsSpeaking={setIsSpeaking} />
       </div>

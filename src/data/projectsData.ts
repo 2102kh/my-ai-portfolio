@@ -9,30 +9,35 @@ export type Project = {
     date: string
     category?: string
     link?: string
+    privateRepo?: boolean 
+    note?: string
   }
   
   export const projectsData: Project[] = [
     {
-      category: 'App',
-      title: 'Finanstid App',
-      description:'Fullt utvecklad nyhetsapp för Finanstid AB. Byggd från grunden av mig med React Native. Innehåller sök, pushnotiser och formulär. Sluttestas nu inför publicering på Google Play och App Store.Projektet utvecklades och testades i Android Studio och Xcode.',
-      image: ['/images/finanstid_1.png','/images/finanstid_2.png'],
-      stack: ['React Native', 'OneSignal', 'WordPress API','TypeScript','Rule.io','Firebase'],
-      github: 'https://github.com/dittkonto/finanstid-app',
-      live: '',
-      link:'',
-      role: 'Huvudutvecklare',
-      date: 'Januari 2025- nu',
-    },
+  category: 'App',
+  title: 'Finanstid App',
+  description: 'Fullt utvecklad nyhetsapp för Finanstid AB. Byggd från grunden av mig med React Native. Innehåller sök, pushnotiser och formulär. Sluttestas nu inför publicering på Google Play och App Store. Projektet utvecklades och testades i Android Studio och Xcode.',
+  image: ['/images/finanstid_1.png','/images/finanstid_2.png'],
+  stack: ['React Native', 'OneSignal', 'WordPress API', 'TypeScript', 'Rule.io', 'Firebase'],
+  github: 'https://github.com/2102kh', 
+  live: '',
+  link: '',
+  privateRepo: true, 
+  role: 'Huvudutvecklare',
+  date: 'Januari 2025 - nu',
+},
+
     {
       category: 'App',
       title: 'World Meditations',
       description: 'Meditationsapp med integrerad ljudspelare. Jag bidrog till en vidareutvecklad version av appen där jag implementerade navigeringsknappar för föregående/nästa spår, ersatte hårdkodad innehåll med dynamisk data från Firebase, samt testade stöd för nedladdning och uppspelning av ljud offline.Projektet utvecklades och testades i Android Studio.',
       image: ['/images/w_meditations.png', '/images/w_meditations_1.png'],
       stack: ['React Native', 'TypeScript', 'Node.js', 'Firebase', 'Express.js', ],
-      github: 'https://github.com/dittkonto/world-meditations',
+      github: 'https://github.com/2102kh',
       live: '',
       link:'https://play.google.com/store/apps/details?id=com.worldmeditation',
+      privateRepo: true,
       role: 'LIA 1 / Medutvecklare',
       date: 'September-November 2024',
     },
@@ -41,10 +46,10 @@ export type Project = {
   title: 'AI Portfolio',
   description: 'Mitt första AI-drivna portfolio-projekt, där jag experimenterade med GPT, röstsyntes och 3D-animation. Applikationen är responsiv och byggd med Next.js och React Three Fiber, och innehåller en interaktiv 3D-avatar som presenterar mina projekt, svarar på frågor via GPT och pratar med hjälp av Google TTS. Projektet fokuserar på AI-integration, animation och användarupplevelse.',
   image: '/images/ai-portfolio_1.png',
-  stack: ['Next.js', 'React', 'Three.js', 'OpenAI API', 'Tailwind CSS', 'Framer Motion', 'Google TTS (Poly)', 'Ready Player Me'],
+  stack: ['Next.js', 'React', 'Three.js', 'React Three Fiber', 'OpenAI API', 'Tailwind CSS', 'Blender', 'Google TTS (Poly)', 'Ready Player Me'],
   github: 'https://github.com/2102kh/my-ai-portfolio',
-  live: 'https://my-ai-portfolio-ba6t.vercel.app/',
-  link: 'https://my-ai-portfolio-ba6t.vercel.app/',
+  live: 'https://my-ai-portfolio-six.vercel.app/',
+  link: 'https://my-ai-portfolio-six.vercel.app/',
   role: 'Eget projekt',
   date: 'Maj 2025',
 },
@@ -67,7 +72,7 @@ export type Project = {
   image: '/images/theZoo_1.png', 
   stack: ['React', 'JavaScript', 'SASS', 'API'],
   github: 'https://github.com/Medieinstitutet/react-the-zoo-2102kh',
-  link: 'https://apexheaven.netlify.app/',
+  link: 'https://thezoo-2102-react.netlify.app/',
   role: 'Skolprojekt',
   date: 'September 2024',
 },
@@ -78,7 +83,7 @@ export type Project = {
   image: '/images/webbshop_1.png',
   stack: ['JavaScript', 'HTML', 'SASS'],
   github: 'https://github.com/2102kh/webbshop-grupp',
-  live: 'https://webbshop-2102.netlify.app/',
+  link: 'https://apexheaven.netlify.app/',
   role: 'Grupprojekt (skola)',
   date: 'Oktober 2023',
 },
@@ -89,7 +94,7 @@ export type Project = {
   image: '/images/quiz1.png',
   stack: ['HTML', 'CSS', 'JavaScript'],
   github: 'https://github.com/2102kh/quiz-app',
-  link: 'https://quiz-app-2102.netlify.app/',
+  link: 'https://simplequiz-01.netlify.app/',
   role: 'Eget projekt',
   date: 'Maj 2024',
 }

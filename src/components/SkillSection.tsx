@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { FaReact, FaHtml5, FaCss3Alt, FaVuejs, FaNodeJs, FaGitAlt } from 'react-icons/fa'
-import { SiRedux, SiTailwindcss, SiMongodb, SiFigma, SiNextdotjs, SiJavascript, SiExpress, SiFirebase, SiTypescript, SiFramer } from 'react-icons/si'
+import { FaReact, FaHtml5, FaCss3Alt, FaVuejs, FaNodeJs, FaGitAlt, FaUserAstronaut } from 'react-icons/fa'
+import { SiRedux, SiTailwindcss, SiMongodb, SiFigma, SiNextdotjs, SiJavascript, SiExpress, SiFirebase, SiTypescript, SiFramer, SiOpenai, SiBlender } from 'react-icons/si'
 import { FiBell, FiVolume2 } from 'react-icons/fi'
 import { TbCube } from 'react-icons/tb'
 
@@ -31,7 +31,7 @@ const skills = [
             { name: 'Express.js', icon: <SiExpress />, desc: 'Routing & middleware' },
             { name: 'MongoDB', icon: <SiMongodb />, desc: 'Dokumentdatabas med Mongoose' },
             { name: 'Firebase', icon: <SiFirebase />, desc: 'Auth, DB & hosting' },
-            {name: 'OneSignal', icon: <FiBell />, desc: 'Pushnotiser i React Native med SDK & Android-konfiguration'}
+            { name: 'OneSignal', icon: <FiBell />, desc: 'Pushnotiser i React Native med SDK & Android-konfiguration' }
         ]
     },
     {
@@ -42,13 +42,14 @@ const skills = [
         ]
     },
     {
-        category: 'AI & 3D (AI-portfolio)',
+        category: 'AI & Interaktiv 3D',
         items: [
             { name: 'Three.js', icon: <TbCube />, desc: 'Renderat 3D-avatar med React Three Fiber' },
-            { name: 'Ready Player Me', desc: 'Använt avatarplattform och animerat morpher för mun och ögon'},
-            {name: 'Framer Motion',icon: <SiFramer />, desc: 'Animerat UI och komponenter i portfolio med smidiga övergångar'},
-            {name: 'OpenAI GPT', desc: 'Byggt en AI-chatt med GPT-4 för interaktion med avatar'},
-            {name: 'Google TTS (Poly)',icon: <FiVolume2 />,desc: 'Integrerat Google Cloud Text-to-Speech med AI-svar och valbara röster'},
+            { name: 'Ready Player Me', icon: <FaUserAstronaut />, desc: 'Använt avatarplattform och animerat morpher för mun och ögon' },
+            { name: 'React Three Fiber', icon: <TbCube />, desc: 'Renderat och animerat 3D-avatar i webbläsaren med Three.js via React' },
+            { name: 'OpenAI GPT', icon: <SiOpenai />, desc: 'Byggt en AI-chatt med GPT-4.1 mini för interaktion med avatar' },
+            { name: 'Google TTS (Poly)', icon: <FiVolume2 />, desc: 'Integrerat Google Cloud Text-to-Speech med AI-svar och valbara röster' },
+            { name: 'Blender', icon: <SiBlender />, desc: 'Konverterat och justerat 3D-animationer (FBX → glTF) för webbintegration' },
         ]
     }
 ]
