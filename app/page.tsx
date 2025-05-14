@@ -2,6 +2,7 @@
 import AvatarModel from '@/components/AvatarModel'
 
 import ChatBox from '@/components/ChatBox'
+import ContactmailtoForm from '@/components/ContactmailtoForm'
 import ProjectsSection from '@/components/ProjectsSection'
 import SkillsSection from '@/components/SkillSection'
 import { useState } from 'react'
@@ -34,6 +35,7 @@ export default function Home() {
       </div> 
       <SkillsSection />
       <ProjectsSection />
+      <ContactmailtoForm />
     </section>
   )
 }
