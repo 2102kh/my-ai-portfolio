@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Felaktigt meddelande' }, { status: 400 })
   }
   
-  const chatHistory = (messages as ChatMessage[]).map((msg: any) => ({
+  const chatHistory = (messages as ChatMessage[]).map((msg) => ({
   role: msg.sender === 'user' ? 'user' : 'assistant',
   content: msg.text,
 })) as { role: "user" | "assistant"; content: string }[]
