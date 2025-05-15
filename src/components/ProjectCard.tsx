@@ -28,7 +28,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
                   src={src}
                   alt={`${project.title} bild ${i + 1}`}
                   onClick={() => setPreviewImage(src)}
-                  className={`${imageClasses} cursor-zoom-in ${project.image.length > 1 ? 'flex-1 max-w-[200px]' : 'w-full h-[240px] object-cover'}`}
+                  className={`${imageClasses} cursor-zoom-in ${(project.image && project.image.length > 1) ? 'flex-1 max-w-[200px]' : 'w-full h-[240px] object-cover'}`}
                 />
               ))}
             </div>
