@@ -1,5 +1,5 @@
 'use client'
-import {useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 
 type ChatMessage = {
   sender: 'user' | 'bot'

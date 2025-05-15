@@ -6,6 +6,10 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 })
+type ChatMessage = {
+  sender: 'user' | 'bot'
+  text: string
+}
 
 export async function POST(req: NextRequest) {
   const { messages } = await req.json()
@@ -13,7 +17,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Felaktigt meddelande' }, { status: 400 })
   }
   
-  const chatHistory = messages.map((msg: any) => ({
+  const chatHistory = (messages as ChatMessage[]).map((msg: any) => ({
   role: msg.sender === 'user' ? 'user' : 'assistant',
   content: msg.text,
 })) as { role: "user" | "assistant"; content: string }[]
