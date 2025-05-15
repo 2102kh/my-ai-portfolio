@@ -29,7 +29,13 @@ export default function NavBar() {
     return (
         <header className="sticky top-0 z-50 bg-[var(--color-beige)] shadow-md justify-between align-center">
             <div className=" mx-auto  flex items-center justify-between px-6 py-6">
-                <h1 className="text-xl text-[var(--text)] font-bold">👩‍💻 Mitt Portfolio</h1>
+               <div className="flex items-center gap-2">
+  <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center text-sm font-bold">
+    N
+  </div>
+  <h1 className="text-xl text-[var(--text)] font-bold">App & Mobile Developer</h1>
+</div>
+
                 <nav className="hidden md:flex gap-6 justify-end align-center items-center">
                     {NAV_ITEMS.map((item) => (
                         <NavLink key={item.label} {...item} />
