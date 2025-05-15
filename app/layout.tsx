@@ -7,15 +7,11 @@ import { Inter } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
-  title: 'Mitt AI-Portfolio',
-  description: 'En interaktiv AI-baserad portfolio av en frontendutvecklare',
-}
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="sv">
-     <head/>
+    
       <body className={`${inter.className} bg-[var(--color-latte)] text-gray-900 flex flex-col min-h-screen`}>
         <header className="sticky top-0 z-50 bg-[var(--color-beige)] shadow-md">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
