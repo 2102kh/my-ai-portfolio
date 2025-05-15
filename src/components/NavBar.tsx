@@ -2,77 +2,75 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const NAV_ITEMS = [
-    { href: '/',       label: 'Start' },
+    { href: '/', label: 'Start' },
     { href: '#skills', label: 'Mina Färdigheter' },
-    { href: '#project',label: 'Min project' },
-    { href: '#contact',label: 'Kontakta mig' },
+    { href: '#project', label: 'Mina Projekt' },
+    { href: '#contact', label: 'Kontakta mig' },
 ]
-type NavItem = {
-    href: string;
-    label: string;
-    onClick?: () => void;
-}
 
-const NavLink = ({ href, label,onClick }: NavItem) => {
-    return (
-        <Link
-            href={href}
-            onClick={onClick}
-            className=' px-4 py-2 
-  text-[var(--color-text-main)] 
-  text-lg
-  hover:text-[var(--color-accent)] 
-  hover:border-[var(--color-accent)] 
-  rounded-md 
-  transition-all 
-  duration-300 
-  transform 
-  hover:scale-125'>
-            {label}
-        </Link>
-    )
-}
+
+const NavLink = ({ href, label, onClick }: { href: string; label: string; onClick?: () => void }) => (
+    <Link
+        href={href}
+        onClick={onClick}
+        className="px-4 py-2 text-lg font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] transition duration-300"
+    >
+        {label}
+    </Link>
+)
 
 export default function NavBar() {
-    const [isOpen, setIsOpen] = useState(false);
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
-    return (
-       <><div className=" md:hidden flex justify-center items-center bg-[var(--color-latte)] hover:bg-[var(--color-hover)] hover:text-[var(--color-beige)] rounded-md z-50">
-           <button onClick={toggleMenu} className="p-2 rounded-md md:hidden  transition duration-300">
-                {isOpen ? (
-                    <XMarkIcon className="w-6 h-6 text-[var(--color-accent)] transition duration-300" />
-                ) : (
-                    <Bars3Icon className="w-6 h-6 text-[var(--color-text-main)] transition duration-300" />
-                    
-                )}
-            </button>
-             </div>         
-            <nav className="hidden md:flex flex-row justify-center ">
-                <div className="flex flex-wrap justify-center ">
-                    {NAV_ITEMS.map((item) => (
-                        <NavLink
-                            key={item.label}
-                            href={item.href}
-                            label={item.label} 
-                            />
-                    ))}
-                </div>
-            </nav>
-              {isOpen && (
-            <div className='flex flex-col w-[60vw] h-[60vh] bg-[var(--color-beige)] items-center gap-3 text-lg  top-0 right-0 justify-center shadow-lg rounded-lg absolute'>
-                    {NAV_ITEMS.map((item) => (
-                        <NavLink
-                            key={item.label}
-                            href={item.href}
-                            label={item.label}
-                            onClick={()=> setIsOpen(false)} />
-                    ))}
-                </div>
-            )}</>
+    const [isOpen, setIsOpen] = useState(false)
+    const toggleMenu = () => setIsOpen(!isOpen)
 
+    return (
+        <header className="sticky top-0 z-50 bg-[var(--color-beige)] shadow-md justify-between align-center">
+            <div className=" mx-auto  flex items-center justify-between px-6 py-6">
+                <h1 className="text-xl text-[var(--text)] font-bold">👩‍💻 Mitt Portfolio</h1>
+                <nav className="hidden md:flex gap-6 justify-end align-center items-center">
+                    {NAV_ITEMS.map((item) => (
+                        <NavLink key={item.label} {...item} />
+                    ))}
+                </nav>
+
+                <button
+                    aria-label="Toggle menu"
+                    onClick={toggleMenu}
+                    className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+                >
+                    {isOpen ? (
+                        <XMarkIcon className="h-6 w-6 text-[var(--color-accent)]" />
+                    ) : (
+                        <Bars3Icon className="h-6 w-6 text-[var(--color-text-main)]" />
+                    )}
+                </button>
+            </div>
+
+            <AnimatePresence>
+                {isOpen && (
+                    <motion.nav
+                        initial={{ opacity: 0, y: -20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -20 }}
+                        transition={{ duration: 0.3, ease: 'easeInOut' }}
+                        className="flex flex-col items-center gap-6 mt-3 bg-[var(--color-latte)] shadow-md p-6 rounded-md md:hidden"
+                    >
+                        {NAV_ITEMS.map((item) => (
+                            <motion.div
+                                key={item.label}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                            >
+                                <NavLink href={item.href} label={item.label} onClick={() => setIsOpen(false)} />
+                            </motion.div>
+                        ))}
+                    </motion.nav>
+                )}
+            </AnimatePresence>
+
+        </header>
     )
 }
