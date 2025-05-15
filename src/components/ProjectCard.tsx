@@ -10,7 +10,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
 
   return (
     <div className="min-w-[300px] bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-xl flex flex-col ">
-      <div className="bg-[var(--color-beige)] px-2 py-2 justify-center flex items-center h-[240px] gl:h-[280px] ">
+      <div className="bg-[var(--color-beige)]  py-2 justify-center flex items-center h-[240px] gl:h-[280px] ">
         {project.image && Array.isArray(project.image) ? (
           <div className={`flex ${project.image.length > 1 ? 'flex-row ' : 'flex-col'} gap-6   items-center justify-center`}>
             {project.image.map((src, i) => (
