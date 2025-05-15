@@ -4,7 +4,7 @@ import { FaLinkedin, FaGithub, FaEnvelope } from 'react-icons/fa'
 
 export default function ContactSection() {
     return (
-        <section className="relative w-full py-16 px-8 bg-[var(--color-beige)] text-[var(--color-text-main)]">
+        <section id='contact' className="relative w-full py-16 px-8 bg-[var(--color-beige)] text-[var(--color-text-main)]">
             <div className="max-w-xl mx-auto text-center">
                 <h2 className="text-3xl font-semibold mb-4">Låt oss ta kontakt!</h2>
                 <p className="mb-6 text-[var(--color-text-light)]">

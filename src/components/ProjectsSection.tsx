@@ -1,12 +1,11 @@
 'use client'
-
 import React from 'react'
 import { projectsData } from '../data/projectsData'
 import ProjectCard from './ProjectCard'
 
 const ProjectsSection = () => {
   return (
-    <section className="py-16 px-6 bg-[var(--color-accent)] text-[var(--color-beige)] letter-spacing-[0.1em]">
+    <section id ='project' className="py-16 px-6 bg-[var(--color-accent)] text-[var(--color-beige)] letter-spacing-[0.1em]">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-3xl font-semibold mb-12 text-center text:[var(--text-color)]">MINA PROJECT</h2>
         <div className="overflow-x-auto pb-4">
