@@ -18,7 +18,11 @@ const ProjectCard = ({ project }: { project: Project }) => {
                 key={i}
                 src={src}
                 alt={`${project.title} bild ${i + 1}`}
-                className={`rounded-xl ${(project.image?.length ?? 0) > 1 ? 'w-1/2 h-[230px] ' : 'w-full  h-[240px] object-cover'}`}
+                className={`
+                rounded-xl 
+                object-contain
+                max-h-[230px]
+                ${(project.image?.length ?? 0) > 1 ? 'flex-1 max-w-[200px] ' : 'w-full  h-[240px] object-cover'}`}
               />
             ))}
           </div>
@@ -26,7 +30,10 @@ const ProjectCard = ({ project }: { project: Project }) => {
           <img
             src={typeof project.image === 'string' ? project.image : ''}
             alt={project.title}
-            className="w-full h-[240px] object-contain rounded-xl"
+            className="w-full h-[240px] 
+            object-contain
+            rounded-xl
+            "
           />
         )}
       </div>
