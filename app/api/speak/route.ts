@@ -11,10 +11,20 @@ const polly = new PollyClient({
 })
 
 export async function POST(req: NextRequest) {
+  
+  
   const { text } = await req.json()
+  let modifiedText = text
+  if (text.includes("Nigora")) {
+    modifiedText = text.replace(/Nigora/g,
+      `<phoneme alphabet="ipa" ph="niːɡoːra">Nigora</phoneme>`
+    )
+  }
+  const ssml =`<speak>${modifiedText}</speak>`
   const command = new SynthesizeSpeechCommand({
     OutputFormat: "mp3",
-    Text: text,
+    TextType: "ssml",
+    Text: ssml,
     VoiceId: "Elin",        // ← Svensk kvinnlig röst , altrnative is "Astrid" with Engine: "standard"
     LanguageCode: "sv-SE",    
     Engine: "neural",       

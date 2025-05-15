@@ -33,7 +33,7 @@ export default function NavBar() {
   <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center text-sm font-bold">
     N
   </div>
-  <h1 className="text-xl text-[var(--text)] font-bold">App & Mobile Developer</h1>
+  
 </div>
 
                 <nav className="hidden md:flex gap-6 justify-end align-center items-center">

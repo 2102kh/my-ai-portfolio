@@ -45,7 +45,7 @@ export type Project = {
   category: 'Webb',
   title: 'AI Portfolio',
   description: 'Mitt första AI-drivna portfolio-projekt, där jag experimenterade med GPT, röstsyntes och 3D-animation. Applikationen är responsiv och byggd med Next.js och React Three Fiber, och innehåller en interaktiv 3D-avatar som presenterar mina projekt, svarar på frågor via GPT och pratar med hjälp av Google TTS. Projektet fokuserar på AI-integration, animation och användarupplevelse.',
-  image: '/images/ai-portfolio_1.png',
+  image: '/images/ai-portfolio.png',
   stack: ['Next.js', 'React', 'Three.js', 'React Three Fiber', 'OpenAI API', 'Tailwind CSS', 'Blender', 'Google TTS (Poly)', 'Ready Player Me'],
   github: 'https://github.com/2102kh/my-ai-portfolio',
   live: 'https://my-ai-portfolio-six.vercel.app/',

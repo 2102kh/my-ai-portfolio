@@ -1,5 +1,5 @@
 'use client'
-import {useState } from 'react'
+import {useEffect, useRef, useState } from 'react'
 
 type ChatMessage = {
   sender: 'user' | 'bot'
@@ -65,7 +65,7 @@ export default function ChatBox({
       const response = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: inputText }),
+        body: JSON.stringify({ messages:[...messages, userMessage]  }),
       })
 
       const data = await response.json()
@@ -86,6 +86,8 @@ export default function ChatBox({
 
   return (
     <div className="bg-white text-[var(--color-text-main)] p-6 rounded-lg shadow-2xl max-w-lg w-full ">
+      
+
       <h2 className='text-lg font-bold mb-4'>Chat with Docka</h2>
       <form onSubmit={handleSubmit} className='flex flex-col space-y-4 '>
         <textarea

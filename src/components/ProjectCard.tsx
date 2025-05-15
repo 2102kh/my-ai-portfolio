@@ -12,13 +12,13 @@ const ProjectCard = ({ project }: { project: Project }) => {
     <div className="min-w-[300px] bg-white rounded-xl shadow-md overflow-hidden transition hover:shadow-xl flex flex-col ">
       <div className="bg-[var(--color-beige)]  py-2 justify-center flex items-center h-[240px] gl:h-[280px] ">
         {project.image && Array.isArray(project.image) ? (
-          <div className={`flex ${project.image.length > 1 ? 'flex-row ' : 'flex-col'} gap-3 items-center justify-center`}>
+          <div className={`flex ${project.image.length > 1 ? 'flex-row ' : 'flex-col'} gap-2 items-center justify-center`}>
             {project.image.map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt={`${project.title} bild ${i + 1}`}
-                className={`rounded-xl ${(project.image?.length ?? 0) > 1 ? 'w-1/2 h-[230px] object-contain ' : 'w-full  h-[240px] object-cover'}`}
+                className={`rounded-xl ${(project.image?.length ?? 0) > 1 ? 'w-1/2 h-[230px] ' : 'w-full  h-[240px] object-cover'}`}
               />
             ))}
           </div>
