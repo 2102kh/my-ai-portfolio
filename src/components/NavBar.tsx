@@ -5,10 +5,10 @@ import { XMarkIcon, Bars3Icon } from '@heroicons/react/24/outline'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const NAV_ITEMS = [
-    { href: '/', label: 'Start' },
-    { href: '#skills', label: 'Mina Färdigheter' },
-    { href: '#project', label: 'Mina Projekt' },
-    { href: '#contact', label: 'Kontakta mig' },
+    { href: '/', label: 'Välkommen' },
+    { href: '#skills', label: 'Tech Stack' },
+    { href: '#project', label: 'Case & Projekt' },
+    { href: '#contact', label: 'Låt oss ta kontakt' },
 ]
 
 
@@ -16,27 +16,34 @@ const NavLink = ({ href, label, onClick }: { href: string; label: string; onClic
     <Link
         href={href}
         onClick={onClick}
-        className="px-4 py-2 text-lg font-medium text-[var(--color-text-main)] hover:text-[var(--color-accent)] transition duration-300"
+        className="px-2 py-2 text-lg font-medium text-[var(--color-text-main)] rounded-sm hover:text-[var(--color-accent)] hover:scale-105 hover:border-b transition duration-300"
     >
         {label}
     </Link>
 )
-
-export default function NavBar() {
+interface NavBarProps {
+    menuOpen: boolean
+    setMenuOpen: (open: boolean) => void
+}
+export default function NavBar({menuOpen, setMenuOpen}: NavBarProps) {
     const [isOpen, setIsOpen] = useState(false)
-    const toggleMenu = () => setIsOpen(!isOpen)
-
+    const toggleMenu = () => {
+    const newState = !isOpen
+    setIsOpen(newState)
+    setMenuOpen(newState)
+    }
+    
     return (
         <header className="sticky top-0 z-50 bg-[var(--color-beige)] shadow-md justify-between align-center">
-            <div className=" mx-auto  flex items-center justify-between px-6 py-6">
-               <div className="flex items-center gap-2">
-  <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center text-sm font-bold">
-    N
-  </div>
-  
-</div>
+            <div className=" mx-auto  flex items-center justify-between px-6 py-2">
+                <div className="flex items-center gap-2">
+                    <div className="w-8 h-8 rounded-full bg-[var(--color-accent)] text-white flex items-center justify-center text-sm font-bold hover:scale-125 cursor-pointer transition duration-300">
+                        N
+                    </div>
 
-                <nav className="hidden md:flex gap-6 justify-end align-center items-center">
+                </div>
+
+                <nav className="hidden md:flex gap-6 justify-end align-center items-center ">
                     {NAV_ITEMS.map((item) => (
                         <NavLink key={item.label} {...item} />
                     ))}
@@ -45,7 +52,7 @@ export default function NavBar() {
                 <button
                     aria-label="Toggle menu"
                     onClick={toggleMenu}
-                    className="md:hidden p-2 rounded focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)]"
+                    className="md:hidden p-1 rounded focus:outline-none focus:ring-1 focus:ring-[var(--color-accent)] cursor-pointer hover:scale-115"
                 >
                     {isOpen ? (
                         <XMarkIcon className="h-6 w-6 text-[var(--color-accent)]" />
@@ -58,11 +65,11 @@ export default function NavBar() {
             <AnimatePresence>
                 {isOpen && (
                     <motion.nav
-                        initial={{ opacity: 0, y: -20 }}
+                        initial={{ opacity: 0, y: -20}}
                         animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -20 }}
+                        exit={{ opacity: 0, y: 0,scale:1 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
-                        className="flex flex-col items-center gap-6 mt-3 bg-[var(--color-latte)] shadow-md p-6 rounded-md md:hidden"
+                        className="flex flex-col items-center gap-6 mt-3 bg-[var(--color-latte)] shadow-md px-6 py-12 md:hidden"
                     >
                         {NAV_ITEMS.map((item) => (
                             <motion.div
@@ -70,12 +77,16 @@ export default function NavBar() {
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.95 }}
                             >
-                                <NavLink href={item.href} label={item.label} onClick={() => setIsOpen(false)} />
+                                <NavLink href={item.href} label={item.label} 
+                                onClick={() => {
+                                    setIsOpen(false)
+                                    setMenuOpen(false)}}/>
                             </motion.div>
                         ))}
                     </motion.nav>
                 )}
             </AnimatePresence>
+
 
         </header>
     )

@@ -88,7 +88,7 @@ export default function ChatBox({
     <div className="bg-white text-[var(--color-text-main)] p-6 rounded-lg shadow-2xl max-w-lg w-full ">
       
 
-      <h2 className='text-lg font-bold mb-4'>Chat with Docka</h2>
+      <h2 className='text-lg font-semibold mb-4'>Chatt med Docka</h2>
       <form onSubmit={handleSubmit} className='flex flex-col space-y-4 '>
         <textarea
           value={inputText}
@@ -114,8 +114,8 @@ export default function ChatBox({
           >
             <div
               className={`max-w-[80%] p-3 rounded-lg text-sm ${msg.sender === 'user'
-                  ? 'bg-[var(--chat-user-bubble)] text-[var(--chat-user-text)] rounded-br-none'
-                  : 'bg-[var(--chat-bot-bubble)] text-[var(--foreground)] rounded-bl-none flex items-start gap-2'
+                  ? 'text-[var(--color-accent)] font-semibold rounded-br-none'
+                  : 'text-[var(--color-text-main)] rounded-sm flex items-start gap-2'
                 }`}
             >
 
