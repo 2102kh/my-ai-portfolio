@@ -17,7 +17,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {menuOpen && (
   <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm" />
 )}
-        <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
+        <NavBar setMenuOpen={setMenuOpen} />
         <div className={menuOpen ? 'blur-sm pointer-events-none transition duration-300' : 'transition duration-300'}>
           <main className="flex-grow">{children}</main>
 

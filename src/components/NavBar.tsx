@@ -22,10 +22,9 @@ const NavLink = ({ href, label, onClick }: { href: string; label: string; onClic
     </Link>
 )
 interface NavBarProps {
-    menuOpen: boolean
-    setMenuOpen: (open: boolean) => void
+setMenuOpen: (open: boolean) => void
 }
-export default function NavBar({menuOpen, setMenuOpen}: NavBarProps) {
+export default function NavBar({setMenuOpen}: NavBarProps) {
     const [isOpen, setIsOpen] = useState(false)
     const toggleMenu = () => {
     const newState = !isOpen
